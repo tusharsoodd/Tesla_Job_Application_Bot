@@ -12,6 +12,11 @@ import pandas as pd
 
 from formfiller import InternshipFormFiller
 
+FirstName="John"
+LastName="Doe"
+Email="john.doe@gmail.com"
+PhoneNumber=9998767789
+
 browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 browser.get("https://www.tesla.com/careers/search/?query=Internship&department=vehicle-software&site=US")
 
