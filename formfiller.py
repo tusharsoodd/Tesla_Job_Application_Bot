@@ -9,7 +9,7 @@ import time
 from selenium.webdriver.support import expected_conditions as EC
 
 
-def InternshipFormFiller(link):
+def InternshipFormFiller(link, LastName, FirstName, Email, PhoneNumber):
     browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
     browser.get(link)
 
@@ -47,11 +47,11 @@ def InternshipFormFiller(link):
 
     time.sleep(2)
     #Getting fields
-    browser.find_element(By.XPATH, "/html/body/div/div/div/form/div/div[1]/div/div[2]/div[1]/input").send_keys("Sood")
+    browser.find_element(By.XPATH, "/html/body/div/div/div/form/div/div[1]/div/div[2]/div[1]/input").send_keys(LastName)
 
     # time.sleep(3)
 
-    browser.find_element(By.NAME, "personal.firstName").send_keys("Tushar")
+    browser.find_element(By.NAME, "personal.firstName").send_keys(FirstName)
     browser.find_element(By.XPATH, "/html/body/div/div/div/form/div/div[1]/div/div[5]/div/div/div/button").click()
     browser.find_element(By.ID, "country-listbox-GB").click()
     time.sleep(2)
@@ -63,8 +63,8 @@ def InternshipFormFiller(link):
 
     WebDriverWait(browser, 5).until(EC.element_to_be_clickable(browser.find_element(By.NAME, "personal.phone")))
     Select(browser.find_element(By.NAME, "personal.phoneType")).select_by_value("mobile")  ##dropdown
-    browser.find_element(By.NAME,"personal.email").send_keys("s2134605@ed.ac.uk")
-    browser.find_element(By.NAME, "personal.phone").send_keys("7774953280")
+    browser.find_element(By.NAME,"personal.email").send_keys(Email)
+    browser.find_element(By.NAME, "personal.phone").send_keys(PhoneNumber)
     Select(browser.find_element(By.NAME, "personal.country")).select_by_value('US') ##dropdown
 
 
@@ -156,7 +156,7 @@ def InternshipFormFiller(link):
     browser.execute_script("arguments[0].click();", browser.find_element(By.NAME, 'legal.legalAcknowledgment'))
 
 
-    browser.find_element(By.NAME, "legal.legalAcknowledgmentName").send_keys("Tushar Sood")
+    browser.find_element(By.NAME, "legal.legalAcknowledgmentName").send_keys(FirstName + LastName)
 
     # time.sleep(2)
     browser.execute_script("arguments[0].click();", browser.find_element(By.NAME, "next"))
@@ -181,7 +181,7 @@ def InternshipFormFiller(link):
     Select(browser.find_element(By.NAME, "eeo.eeoRaceEthnicity")).select_by_value("asian")  ##dropdown
     Select(browser.find_element(By.NAME, "eeo.eeoDisabilityStatus")).select_by_value("no")  ##dropdown
 
-    browser.find_element(By.NAME, "eeo.eeoDisabilityStatusName").send_keys("Tushar Sood")
+    browser.find_element(By.NAME, "eeo.eeoDisabilityStatusName").send_keys(FirstName + LastName)
 
     submitButton=WebDriverWait(browser,5).until(EC.element_to_be_clickable(browser.find_element(By.XPATH, "/html/body/div/div/div/form/div/div[2]/button[2]")))
     browser.execute_script("arguments[0].click();", submitButton)
